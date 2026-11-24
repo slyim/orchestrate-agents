@@ -75,6 +75,8 @@ Things worth stating explicitly because agents get them wrong otherwise: don't g
 
 ## Lessons to keep
 
+- An agent can die mid-task (provider quota, crash). Diff its folder against the commit it was synced from, check it builds, then ask the user which provider/model should continue (never switch silently) and brief the replacement to review and finish the partial work rather than restart. The same model is often available through a second provider with its own quota.
+- Before a release, check what only shows up on CI: smaller screens, no GPU, different timing. Tests that assume your machine's screen will fail there.
 - A user's screenshot of a bug is evidence: diagnose from code first (grep the handler), file the issue with cause + fix, then schedule it.
 - Re-sync before re-use: a folder that an agent left must be synced to the merged state before the next agent starts there, or its next diff will silently revert merged work.
 - Shell quoting breaks on big heredocs containing quotes; write generated scripts with the Write tool, then run them.
